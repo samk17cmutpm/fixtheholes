@@ -7,7 +7,7 @@ module API
 
         desc "return all garages"
         get "", root: :garages do
-          {:success => true}
+          Garage.all
         end
 
       end

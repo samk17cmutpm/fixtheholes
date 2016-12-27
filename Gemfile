@@ -40,6 +40,9 @@ gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem "grape-entity"
 
+gem 'active_interaction', '~> 3.4'
+gem 'faker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
