@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227030218) do
+ActiveRecord::Schema.define(version: 20161227034954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,4 +21,35 @@ ActiveRecord::Schema.define(version: 20161227030218) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "garages", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "location_id"
+    t.integer  "owner_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_garages_on_location_id", using: :btree
+    t.index ["owner_id"], name: "index_garages_on_owner_id", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.float    "long"
+    t.float    "lat"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "address"
+    t.index ["area_id"], name: "index_locations_on_area_id", using: :btree
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "phone_number"
+    t.integer  "age"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_foreign_key "garages", "locations"
+  add_foreign_key "garages", "owners"
+  add_foreign_key "locations", "areas"
 end
